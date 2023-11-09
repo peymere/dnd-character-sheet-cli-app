@@ -90,21 +90,22 @@ def edit_active():
             char_choice = int(char_choice)
             if 1 <= char_choice <= len(next_players_names):
                 print(f'★ Remove {next_players_names[char_choice - 1]} from the next game? (Y/N) ★')
-                choice = input("❯❯ ")
-                if choice == "Y":
-                    Player.find_by_name(next_players_names[char_choice - 1])[0].remove_active()
-                    print("✔ ✔ SUCCESS ✔ ✔")
-                    print(f"{next_players_names[char_choice - 1]} cancelled!")
-                    print("Returning to DM Mode...")
-                    print('-----------------------')
-                    break
-                elif choice == "N":
-                    print("✖ ✖ Cancelling Cancelled ✖ ✖")
-                    print("Returning to DM Mode...")
-                    print('-----------------------')
-                    break
-                else:
-                    print("Type Y or N to confirm or cancel")
+                while True:
+                    choice = input("❯❯ ")
+                    if choice == "Y":
+                        Player.find_by_name(next_players_names[char_choice - 1])[0].remove_active()
+                        print("✔ ✔ SUCCESS ✔ ✔")
+                        print(f"{next_players_names[char_choice - 1]} cancelled!")
+                        print("Returning to DM Mode...")
+                        print('-----------------------')
+                        break
+                    elif choice == "N":
+                        print("✖ ✖ Cancelling Cancelled ✖ ✖")
+                        print("Returning to DM Mode...")
+                        print('-----------------------')
+                        break
+                    else:
+                        print("Type Y or N to confirm or cancel")
             else:
                 print('Please select a number that matches a character')
         except ValueError:

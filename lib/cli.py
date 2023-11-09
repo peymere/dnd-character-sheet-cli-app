@@ -31,8 +31,6 @@ def display_main_menu():
             display_profile_menu()
         elif choice == "4":
             view_players_in_next_session()
-        # elif choice == "5":
-            # delete_player()
         else:
             print("Invalid choice. Please try again.")
 
@@ -43,7 +41,6 @@ def main_menu():
     print("2. View your profile")
     print("3. View all players")
     print("4. View players attending next session")
-    # print("5. Delete a player")
 
 
 """ PLAYER PROFILE CLI """
