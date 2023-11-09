@@ -102,7 +102,7 @@ def display_profile_menu():
                 view_all_characters(current_player)
             elif choice == '3':
                 print(term.red('----') + term.orange('----') + term.khaki1('----') + term.green('----') + term.blue('----') + term.purple('----'))
-                print("Your Current Character:")
+                print(term.blue4_on_green("Your Current Character:"))
                 get_active_char(current_player)
             elif choice == '4':
                 rsvp(current_player)
@@ -113,11 +113,11 @@ def display_profile_menu():
                 if deleted == True:
                     break
             else:
-                print("Invalid choice. Please try again.")
+                print(term.red3_on_snow3("Invalid choice. Please try again."))
 
 def run_dm_mode():
     def dm_menu():
-        print("★ Secret Dungeon Master Mode ★") 
+        print(term.goldenrod3_on_blue3("★ Secret Dungeon Master Mode ★")) 
         print(term.red('----') + term.orange('----') + term.khaki1('----') + term.green('----') + term.blue('----') + term.purple('----'))
         print("0. Back to Main Menu")
         print("1. See all characters")
@@ -140,7 +140,7 @@ def run_dm_mode():
         elif choice == '4':
             cancel_game()
         else:
-            print('Invalid choice. Please try again.')
+            print(term.red3_on_snow3('Invalid choice. Please try again.'))
 
 if __name__ == "__main__":
     display_main_menu()
