@@ -20,13 +20,20 @@ Manage your Dungeons and Dragons characters and profiles with this CLI app.
 
 # Installation
 
-1. Clone the repository to your local machine:
+   
+### Clone the repository to your local machine:
+    git clone https://github.com/peymere/dnd-character-sheet-cli-app
 
-   ```bash
-   git clone https://github.com/peymere/dnd-character-sheet-cli-app
+### Navigate to the app's directory
+    cd dnd-campaign-manager
 
+### Install dependencies and enter the pipenv shell
+    pipenv install
+    pipenv shell
 
-    cd dnd-character-manager
+### Run the program
+    python lib/cli.py
+   
 
 
 # Usage
