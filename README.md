@@ -1,131 +1,91 @@
-# Phase 3 CLI+ORM Project Template
+# D&D Character and Player Manager
 
-## Learning Goals
+Manage your Dungeons and Dragons characters and profiles with this CLI app.
 
-- Discuss the basic directory structure of a CLI.
-- Outline the first steps in building a CLI.
+# Table of Contents
 
----
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technology Stack](#technology-stack)
+- [Features](#features)
+- [Character Creation](#character-creation)
+- [Character Management](#character-management)
+- [RSVP for Game Sessions](#rsvp-for-game-sessions)
+- [Player Profile Deletion](#player-profile-deletion)
+- [DM Secret Menu](#dm-secret-menu)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Introduction
+# Installation
 
-You now have a basic idea of what constitutes a CLI. Fork and clone this lesson
-for a project template for your CLI.
+1. Clone the repository to your local machine:
 
-Take a look at the directory structure:
+   ```bash
+   git clone https://github.com/peymere/dnd-character-sheet-cli-app
 
-```console
-.
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-└── lib
-    ├── models
-    │   ├── __init__.py
-    │   └── model_1.py
-    ├── cli.py
-    ├── debug.py
-    └── helpers.py
-```
+    cd dnd-character-manager
 
-Note: The directory also includes two files named `CONTRIBUTING.md` and
-`LICENSE.md` that are specific to Flatiron's curriculum. You can disregard or
-delete the files if you want.
+# Usage
 
----
+1. Manage the users and characters of a D&D campaign
+2. Create player profiles where a user can create characters and RSVP to sessions
 
-## Generating Your Environment
+# Technology Stack
+- Built with Python
+- Utilizes an ORM for database operations
+- Uses SQLite 3 as the database engine
 
-You might have noticed in the file structure- there's already a Pipfile!
+# Features
 
-Install any additional dependencies you know you'll need for your project by
-adding them to the `Pipfile`. Then run the commands:
+## Main Menu Features
 
-```console
-pipenv install
-pipenv shell
-```
+- View a list of all players
+- View a list of players that are attending the next session
+- Create new player profiles
+- Users can login to view their player profiles
 
----
+## Player Profile Features
 
-## Generating Your CLI
+### Character Creation
 
-A CLI is, simply put, an interactive script and prompts the user and performs
-operations based on user input.
+Create new characters with the following attributes:
 
-The project template has a sample CLI in `lib/cli.py` that looks like this:
+- **Name**
+- **Race** (choose from a list of available races)
+- **Class** (choose from a list of available classes)
+- **Alignment** (choose from an alignment grid)
+- **Level**
 
-```py
-# lib/cli.py
+Generate character abilities by "rolling" 3 d6 dice and summing the results for each ability.
 
-from helpers import (
-    exit_program,
-    helper_1
-)
+Save the character to your profile.
 
+### Character Management
 
-def main():
-    while True:
-        menu()
-        choice = input("> ")
-        if choice == "0":
-            exit_program()
-        elif choice == "1":
-            helper_1()
-        else:
-            print("Invalid choice")
+- View a list of all your characters.
+- Delete characters you no longer need.
 
+### RSVP for Game Sessions
 
-def menu():
-    print("Please select an option:")
-    print("0. Exit the program")
-    print("1. Some useful function")
+- RSVP for upcoming game sessions.
+- Choose which character you'll be bringing to the session.
+- View your selected "active" character sheet.
 
+### Player Profile Deletion
 
-if __name__ == "__main__":
-    main()
-```
+Delete your player profile as well as all characters you've made.
 
-The helper functions are located in `lib/helpers.py`:
+## DM Secret Menu
 
-```py
-# lib/helpers.py
+Input 'dm' to access the secret Dungeon Master menu (the password is secret 😉 ).
 
-def helper_1():
-    print("Performing useful function#1.")
+In the DM menu, you can:
 
+- View all characters in the database (names, class, race, and level).
+- Change a character's level.
+- Edit player RSVP status for the next session.
+- Cancel the next session, resetting all player characters to inactive.
 
-def exit_program():
-    print("Goodbye!")
-    exit()
-```
-
-You can run the template CLI with `python lib/cli.py`, or include the shebang
-and make it executable with `chmod +x`. The template CLI will ask for input, do
-some work, and accomplish some sort of task.
-
-Past that, CLIs can be whatever you'd like, as long as you follow the project
-requirements.
-
-Of course, you will update `lib/cli.py` with prompts that are appropriate for
-your application, and you will update `lib/helpers.py` to replace `helper_1()`
-with a useful function based on the specific problem domain you decide to
-implement, along with adding other helper functions to the module.
-
-In the `lib/models` folder, you should rename `model_1.py` with the name of a
-data model class from your specific problem domain, and add other classes to the
-folder as needed. The file `lib/models/__init__.py` has been initialized to
-create the necessary database constants. You need to add import statements to
-the various data model classes in order to use the database constants.
-
-You are also welcome to implement a different module and directory structure.
-However, your project should be well organized, modular, and follow the design
-principal of separation of concerns, which means you should separate code
-related to:
-
-- User interface
-- Data persistence
-- Problem domain rules and logic
 
 ---
 

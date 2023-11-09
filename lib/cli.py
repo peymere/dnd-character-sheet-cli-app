@@ -37,7 +37,7 @@ def display_main_menu():
             print("Invalid choice. Please try again.")
 
 def main_menu():
-    print("D&D Character Creator:")
+    print("D&D Campaign Manager:")
     print("0. Exit the program")
     print("1. Create new player")
     print("2. View your profile")
