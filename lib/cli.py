@@ -1,5 +1,8 @@
 # lib/cli.py
 from models.players import Player
+from blessed import Terminal
+
+term = Terminal()
 
 """ MAIN MENU CLI """
 from helpers import (
@@ -35,13 +38,12 @@ def display_main_menu():
             print("Invalid choice. Please try again.")
 
 def main_menu():
-    print("D&D Campaign Manager:")
+    print(term.goldenrod3_on_purple3(term.center("D&D Campaign Manager:")))
     print("0. Exit the program")
     print("1. Create new player")
     print("2. View your profile")
     print("3. View all players")
     print("4. View players attending next session")
-
 
 """ PLAYER PROFILE CLI """
 from helpers import (
@@ -66,8 +68,8 @@ def display_profile_menu():
     current_player = None
 
     def profile_menu():
-        print(f"★ {current_player.name}'s Profile ★") 
-        print('-----------------------')
+        print(term.rebeccapurple_on_dodgerblue(f"★ {current_player.name}'s Profile ★")) 
+        print(term.red('----') + term.orange('----') + term.khaki1('----') + term.green('----') + term.blue('----') + term.purple('----'))
         print("0. Back to Main Menu")
         print("1. Create a new character")
         print("2. View all characters")
@@ -75,7 +77,7 @@ def display_profile_menu():
         print("4. RSVP for next session")
         print("5. Delete a character")
         print("6. Delete your profile")
-        print('-----------------------')
+        print(term.red('----') + term.orange('----') + term.khaki1('----') + term.green('----') + term.blue('----') + term.purple('----'))
 
     name = input('Name: ')
     name_list = [player.name.lower().strip() for player in Player.all()]
@@ -85,9 +87,9 @@ def display_profile_menu():
         if password == [player for player in Player.all()][index].password:
             current_player = [player for player in Player.all()][index]
         else:
-            print("Incorrect Password!")
+            print(term.red3_on_snow3("Incorrect Password!"))
     else:
-        print("No user found with that name!")
+        print(term.red3_on_snow3("No user found with that name!"))
         
 
     if current_player:
@@ -99,12 +101,12 @@ def display_profile_menu():
             elif choice == '1':
                 run_char_creator(current_player)
             elif choice == '2':
-                print('-----------------------')
-                print("Your Characters:")
+                print(term.red('----') + term.orange('----') + term.khaki1('----') + term.green('----') + term.blue('----') + term.purple('----'))
+                print(term.blue4_on_green("Your Characters:"))
                 view_all_characters(current_player)
             elif choice == '3':
-                print('-----------------------')
-                print("Your Current Character:")
+                print(term.red('----') + term.orange('----') + term.khaki1('----') + term.green('----') + term.blue('----') + term.purple('----'))
+                print(term.blue4_on_green("Your Current Character:"))
                 get_active_char(current_player)
             elif choice == '4':
                 rsvp(current_player)
@@ -115,20 +117,20 @@ def display_profile_menu():
                 if deleted == True:
                     break
             else:
-                print("Invalid choice. Please try again.")
+                print(term.red3_on_snow3("Invalid choice. Please try again."))
 
         
 
 def run_dm_mode():
     def dm_menu():
-        print("★ Secret Dungeon Master Mode ★") 
-        print('-----------------------')
+        print(term.goldenrod3_on_blue3("★ Secret Dungeon Master Mode ★")) 
+        print(term.red('----') + term.orange('----') + term.khaki1('----') + term.green('----') + term.blue('----') + term.purple('----'))
         print("0. Back to Main Menu")
         print("1. See all characters")
         print("2. Change a characters level")
         print("3. Remove players from next game")
         print("4. Cancel next game")
-        print('-----------------------')
+        print(term.red('----') + term.orange('----') + term.khaki1('----') + term.green('----') + term.blue('----') + term.purple('----'))
 
     while True:
         dm_menu()
@@ -144,7 +146,7 @@ def run_dm_mode():
         elif choice == '4':
             cancel_game()
         else:
-            print('Invalid choice. Please try again.')
+            print(term.red3_on_snow3('Invalid choice. Please try again.'))
 
 def run_char_creator(current_player):
     def char_creator_menu():

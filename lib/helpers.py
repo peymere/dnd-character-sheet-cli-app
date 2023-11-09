@@ -2,28 +2,31 @@
 
 from models.players import Player
 from models.characters import Character
+from blessed import Terminal
+
+term = Terminal()
 
 
 """Main Menu Helpers"""
 
 def view_all_players():
-    print('-----------------------')
+    print(term.red('----') + term.orange('----') + term.khaki1('----') + term.green('----') + term.blue('----') + term.purple('----'))
     print("Viewing all players...")
     for index, player in enumerate(Player.all()):
         print(f'{index + 1}. {player}')
-    print('-----------------------')
+    print(term.red('----') + term.orange('----') + term.khaki1('----') + term.green('----') + term.blue('----') + term.purple('----'))
 
 def view_players_in_next_session():
-    print('-----------------------')
+    print(term.red('----') + term.orange('----') + term.khaki1('----') + term.green('----') + term.blue('----') + term.purple('----'))
     print("RSVP'd Players")
     players = Player.view_next_players()
     for index, player in enumerate(players):
         print(f'{index + 1}. {player[0]} as {player[1]} the {player[2]} {player[3]}')
-    print('-----------------------')
+    print(term.red('----') + term.orange('----') + term.khaki1('----') + term.green('----') + term.blue('----') + term.purple('----'))
     return players
 
 def exit_program():
-    print("Goodbye!")
+    print(term.move_down(2) + term.red3("Goodbye!"))
     exit()
 
 
