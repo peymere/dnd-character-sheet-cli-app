@@ -48,30 +48,31 @@ def change_level():
                 if 1 <= char_choice <= len(chars):
                     to_change = chars[char_choice - 1]
                     print('Select a new level (1-10):')
-                    while True:
+                    while editing:
                         level = input("❯❯ ")
                         try:
                             level = int(level)
                             if 1 <= level <= 10:
                                 print(f'★ {to_change.name} to level {level} ★')
                                 print('Confirm you want to edit this character (Y/N)?')
-                                choice = input("❯❯ ")
-                                if choice == "Y":
-                                    to_change.update_level(level)
-                                    print("✔ ✔ SUCCESS ✔ ✔")
-                                    print(f"{to_change.name}'s level has been changed to {level}!")
-                                    print("Returning to DM mode...")
-                                    print('-----------------------')
-                                    editing =  False
-                                    break
-                                elif choice == "N":
-                                    print("✖ ✖ Edit Cancelled ✖ ✖")
-                                    print("Returning to DM mode...")
-                                    print('-----------------------')
-                                    editing =  False
-                                    break
-                                else:
-                                    print("Type Y or N to confirm or cancel")
+                                while True:
+                                    choice = input("❯❯ ")
+                                    if choice == "Y":
+                                        to_change.update_level(level)
+                                        print("✔ ✔ SUCCESS ✔ ✔")
+                                        print(f"{to_change.name}'s level has been changed to {level}!")
+                                        print("Returning to DM mode...")
+                                        print('-----------------------')
+                                        editing =  False
+                                        break
+                                    elif choice == "N":
+                                        print("✖ ✖ Edit Cancelled ✖ ✖")
+                                        print("Returning to DM mode...")
+                                        print('-----------------------')
+                                        editing =  False
+                                        break
+                                    else:
+                                        print("Type Y or N to confirm or cancel")
                             else:
                                 print('Level must be between 1 and 10')
                         except ValueError:
@@ -83,33 +84,43 @@ def change_level():
 
 def edit_active():
     next_players_names = [player[0] for player in view_players_in_next_session()]
-    print('Select a player to remove from the next game:')
-    while True:
-        char_choice = input("❯❯ ")
-        try:
-            char_choice = int(char_choice)
-            if 1 <= char_choice <= len(next_players_names):
-                print(f'★ Remove {next_players_names[char_choice - 1]} from the next game? (Y/N) ★')
-                choice = input("❯❯ ")
-                if choice == "Y":
-                    Player.find_by_name(next_players_names[char_choice - 1])[0].remove_active()
-                    print("✔ ✔ SUCCESS ✔ ✔")
-                    print(f"{next_players_names[char_choice - 1]} cancelled!")
-                    print("Returning to DM Mode...")
-                    print('-----------------------')
-                    break
-                elif choice == "N":
-                    print("✖ ✖ Cancelling Cancelled ✖ ✖")
-                    print("Returning to DM Mode...")
-                    print('-----------------------')
-                    break
+    if len(next_players_names) == 0:
+        print("There are no players to cancel!")
+        print("Returning to DM mode...")
+        print('-----------------------')
+        return
+    else:
+        print('Select a player to remove from the next game:')
+        editing = True
+        while editing:
+            char_choice = input("❯❯ ")
+            try:
+                char_choice = int(char_choice)
+                if 1 <= char_choice <= len(next_players_names):
+                    print(f'★ Remove {next_players_names[char_choice - 1]} from the next game? (Y/N) ★')
+                    while editing:
+                        choice = input("❯❯ ")
+                        if choice == "Y":
+                            Player.find_by_name(next_players_names[char_choice - 1])[0].remove_active()
+                            print("✔ ✔ SUCCESS ✔ ✔")
+                            print(f"{next_players_names[char_choice - 1]} cancelled!")
+                            print("Returning to DM Mode...")
+                            print('-----------------------')
+                            editing = False
+                            break
+                        elif choice == "N":
+                            print("✖ ✖ Cancelling Cancelled ✖ ✖")
+                            print("Returning to DM Mode...")
+                            print('-----------------------')
+                            editing = False
+                            break
+                        else:
+                            print("Type Y or N to confirm or cancel")
                 else:
-                    print("Type Y or N to confirm or cancel")
-            else:
-                print('Please select a number that matches a character')
-        except ValueError:
-            print("Please select by number")
-    
+                    print('Please select a number that matches a character')
+            except ValueError:
+                print("Please select by number")
+        
 
 def view_all_characters(current_player):
     if current_player == 'dm':
