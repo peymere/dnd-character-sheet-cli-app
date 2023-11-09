@@ -2,6 +2,9 @@
 
 from models.players import Player
 from models.characters import Character
+from blessed import Terminal
+
+term = Terminal()
 
 
 """Main Menu Helpers"""
@@ -23,7 +26,7 @@ def view_players_in_next_session():
     return players
 
 def exit_program():
-    print("Goodbye!")
+    print(term.move_down(2) + term.red3("Goodbye!"))
     exit()
 
 

@@ -1,4 +1,7 @@
 from models.players import Player
+from blessed import Terminal
+
+term = Terminal
 
 def create_new_player():
     existing_players = [player.name.lower().strip() for player in Player.all()]
