@@ -75,7 +75,7 @@ def create_new_char_menu(current_player):
                 print("✔ ✔ SUCCESS ✔ ✔")
                 print("Your new character has been saved!")
                 print("Returning to your profile...")
-                return
+                return True
             elif choice == "N":
                 print("✖ ✖ CANCELLED ✖ ✖")
                 print("Returning to your Profile...")
