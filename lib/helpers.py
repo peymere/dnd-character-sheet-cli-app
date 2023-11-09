@@ -29,6 +29,7 @@ def exit_program():
 
 """Profile Menu Helpers"""
 
+
 def change_level():
     print('All Characters:')
     print('-----------------------')

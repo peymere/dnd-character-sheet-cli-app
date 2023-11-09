@@ -57,15 +57,19 @@ from helpers import (
 from create_char import (
     create_new_char_menu
 )
+from random_char import (
+    create_random_char_menu
+)
 
 def display_profile_menu():
+    
     current_player = None
 
     def profile_menu():
         print(f"★ {current_player.name}'s Profile ★") 
         print('-----------------------')
         print("0. Back to Main Menu")
-        print("1. Create new character")
+        print("1. Create a new character")
         print("2. View all characters")
         print("3. View your current character")
         print("4. RSVP for next session")
@@ -93,7 +97,7 @@ def display_profile_menu():
             if choice == '0':
                 break
             elif choice == '1':
-                create_new_char_menu(current_player)
+                run_char_creator(current_player)
             elif choice == '2':
                 print('-----------------------')
                 print("Your Characters:")
@@ -112,6 +116,8 @@ def display_profile_menu():
                     break
             else:
                 print("Invalid choice. Please try again.")
+
+        
 
 def run_dm_mode():
     def dm_menu():
@@ -139,6 +145,33 @@ def run_dm_mode():
             cancel_game()
         else:
             print('Invalid choice. Please try again.')
+
+def run_char_creator(current_player):
+    def char_creator_menu():
+        print("★ Create a Character ★")
+        print('-----------------------')
+        print("0. Return to your profile")
+        print("1. Make your own character")
+        print("2. Choose for me")
+
+    while True:
+        char_creator_menu()
+        choice = input('❯❯ ')
+        if choice == '0':
+            break
+        elif choice == '1':
+            check = create_new_char_menu(current_player)
+            if check == True:
+                break
+        elif choice == '2':
+            check = create_random_char_menu(current_player)
+            if check == True:
+                break
+        else:
+            print("Invalid choice. Please try again")  
+
+
+
 
 if __name__ == "__main__":
     display_main_menu()
